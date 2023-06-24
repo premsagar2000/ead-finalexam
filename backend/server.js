@@ -59,7 +59,7 @@ app.get("/recipe/update/:id", async function(req, res){
 });
 
 
-app.get("/recipe/delete/:id",async function(req, res){
+app.get("/recipe/delete/:id",confirmMiddleware,async function(req, res){
     const id = req.params.id;
     await RecipeSchema.deleteOne( { _id:id} );
     console.log('Deleted Successfulyy');
