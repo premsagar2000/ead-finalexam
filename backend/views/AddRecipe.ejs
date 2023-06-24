@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe</title>
+</head>
+<body>
+    <%-include('navbar')%>
+    <form method="post">
+        <div>
+            <label>
+                Title: <input type="text" name="title" value="<%=recipe.title%>" placeholder="Enter title ">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Description: <input type="text" name="description" value="<%=recipe.description%>" placeholder="Enter description ">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                ingredients: <input type="text" name="ingredients" value="<%=recipe.ingredients%>" placeholder="Enter ingredients ">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                instructions: <input type="text" name="instructions" value="<%=recipe.instructions%>" placeholder="Enter instructions ">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                image: <input type="text" name="image" value="<%=recipe.image%>" placeholder="Enter image ">
+            </label>
+        </div>
+       
+        <input type="submit" formaction="/recipe/save" value="Save Recipe">
+        <input type="submit" formaction="/recipe/update/<%=recipe._id%>" value="Update Recipe">
+    </form>
+    
+</body>
+</html>

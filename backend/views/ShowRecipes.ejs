@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Recipes</title>
+</head>
+<body>
+    <%-include('navbar')%>
+    <h1>Show Recipes</h1>
+    <%for(let i=0;i<recipes.length;i++){%>
+        <li> <a href="/recipe-details/<%=recipes[i]._id%>">title: <%=recipes[i].title%></a></li>
+    <%}%>
+
+</body>
+</html>
