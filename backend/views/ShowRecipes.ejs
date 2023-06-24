@@ -10,7 +10,7 @@
     <%-include('navbar')%>
     <h1>Show Recipes</h1>
     <%for(let i=0;i<recipes.length;i++){%>
-        <li> <a href="/recipe-details/<%=recipes[i]._id%>">title: <%=recipes[i].title%></a></li>
+        <li> <a href="/recipe-details/<%=recipes[i]._id%>">Title: <%=recipes[i].title%></a></li>
     <%}%>
 
 </body>

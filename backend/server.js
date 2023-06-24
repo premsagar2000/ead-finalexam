@@ -4,7 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 
 const RecipeSchema = require('./model/RecipeSchema');
-//const confirmPrompt = require('./Middleware/confiirmPrompt');
+const validateMiddleware = require('./Middleware/validateMiddleware');
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/', {dbName:'RecipeManagmentApp'}).then((res)=>{
     console.log('Connected')
@@ -26,13 +27,13 @@ app.get('/showrecipes', async (req, res)=>{
     res.render("ShowRecipes", {recipes});
 });
 
-app.get('/addRecipe', (req, res)=>{    
+app.get('/addRecipe', validateMiddleware, (req, res)=>{    
     const recipe = {};
     res.render("AddRecipe", {recipe});
 });
 
 
-app.post('/recipe/save' ,async (req, res)=>{
+app.post('/recipe/save' , validateMiddleware,async (req, res)=>{
     const recipe = await RecipeSchema.create(req.body);
     res.redirect('/showrecipes');
 });
@@ -42,7 +43,7 @@ app.get('/recipe-details/:myid', async(req, res)=>{
     res.render('Recipe-Details', {recipe});
 });
 
-app.post("/recipe/update/:id", async function(req, res){
+app.post("/recipe/update/:id", validateMiddleware,async function(req, res){
     const id = req.params.id;
     const newRecipe = await RecipeSchema.updateOne({_id:id}, {$set:{title:req.body.title, description:req.body.description, ingredients:req.body.ingredients, instructions:req.body.instructions, image:req.body.image}});  
     console.log('Product Updated');
